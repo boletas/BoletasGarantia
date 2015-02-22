@@ -3,6 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>...:::Boletas Garantia:::...</title>
         <link rel="stylesheet" href="<?php base_url();?>assets/css/bootstrap.css">
         <link rel="stylesheet" href="<?php base_url();?>assets/css/bootstrap-theme.min.css">
@@ -21,20 +24,23 @@
                         <hr />
                         <div class="login-form">
                             
-                            <!--** MENSAJE DE ERROR **-->
-                            
-                            <div class="alert alert-error hide">
+                            <!--** MENSAJE DE ERROR USUARIO INCORRECTO **-->
+                            <?php
+                                if($this->session->flashdata('usuario_incorrecto')){
+                            ?>
+                            <div class="alert alert-error">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                                 <h4>Error!</h4>
-                                Your Error Message goes here
+                                <?=$this->session->flashdata('usuario_incorrecto')?>
                             </div>
                             
-                            <!--** FIN MENSAJE DE ERROR **-->
+                            <?php }?>
+                            <!--** FIN MENSAJES DE ERROR **-->
                             
-                            <form action="#" method="get"  >
-                                <input type="text" placeholder="Nombre se usuario" class="input-field" required/> 
-                                <input type="password"  placeholder="Contraseña" class="input-field" required/> 
-                                <button type="submit" class="btn btn-login">Login</button> 
+                            <form action="<?php base_url();?>login/inicio_sesion" method="post">
+                                <input type="text" placeholder="Nombre se usuario" value="<?php echo set_value('usuario')?>" name="usuario" class="input-field" required/> 
+                                <input type="password"  placeholder="password" name="password" class="input-field" required/> 
+                                <button type="submit" class="btn btn-login">Inicio sesion</button> 
                             </form>	
                             <div class="login-links"> 
                                 <a href="forgot-password.html">
