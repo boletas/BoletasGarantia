@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Login extends SuperController {
 
 	public function __construct()
     {
@@ -10,6 +10,7 @@ class Login extends CI_Controller {
     }
 	public function index()
 	{
+            //Revisa si existe un tipo de perfil en la sesion
             switch ($this->session->userdata('perfil')) {
             case '':
                 $this->load->view('login');
@@ -34,6 +35,7 @@ class Login extends CI_Controller {
                 
                 $usuariook = $this->login_model->login_user($usuario,$pass);
                 
+                //consulta si se hizo la consulta
                 if($usuariook == TRUE){
                     
                     $data = array (
@@ -43,6 +45,7 @@ class Login extends CI_Controller {
                         'ap_paterno'    => $usuariook->ap_paterno
                     );
                     
+                    //Se pasan los datos del array $data a la sesion
                     $this->session->set_userdata($data);
                     $this->index();
                 }else{
@@ -54,7 +57,12 @@ class Login extends CI_Controller {
         
     public function cerrar_sesion()
     {
+        //Para remover el cache
+        $this->removeCache();
+        
+        //para destruir los datos de sesion
         $this->session->sess_destroy();
+        
         redirect('login');
     }
         
