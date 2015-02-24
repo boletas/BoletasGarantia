@@ -10,17 +10,7 @@ class Login_model extends CI_Model {
     
     public function login_user($username,$password)
     {
-//        $this->db->select([
-//            'p.perfil',
-//            'u.nombre',
-//            'u.ap_paterno'
-//        ]);
-//        $this->db->where('nombre_usuario',$username);
-//        $this->db->where('pass_usuario',$password);
-//        $this->db->where('u.tbl_Perfil_idPerfil = p.idPerfil');
-//        $this->db->where('u.tbl_Login_idLogin = l.idLogin');
-//        
-//        $this->db->from('tbl_Usuario u, tbl_Perfil p, tbl_Login l');
+
         $query = $this->db->query("CALL select_user('$username','$password')");
         
         if ($query->num_rows > 0)
