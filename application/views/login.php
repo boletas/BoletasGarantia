@@ -38,7 +38,7 @@
                             <!--** FIN MENSAJES DE ERROR **-->
                             
                             <form action="<?php base_url();?>login/inicio_sesion" method="post">
-                                <input type="text" placeholder="Nombre se usuario" value="<?php echo set_value('usuario')?>" name="usuario" class="input-field" required/> 
+                                <input type="text" placeholder="Nombre de usuario" value="<?php echo set_value('usuario')?>" name="usuario" class="input-field" required/> 
                                 <input type="password"  placeholder="password" name="password" class="input-field" required/> 
                                 <button type="submit" class="btn btn-login">Inicio sesion</button> 
                             </form>	
